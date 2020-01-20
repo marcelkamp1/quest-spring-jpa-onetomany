@@ -1,9 +1,12 @@
 package com.wildcodeschool.wildandwizard.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class School {
@@ -15,6 +18,9 @@ public class School {
     private Long capacity;
     private String country;
 
+    @OneToMany(mappedBy = "school")
+    private List<Wizard> wizards;
+    
     public School() {
     }
 
@@ -22,7 +28,15 @@ public class School {
         return id;
     }
 
-    public void setId(Long id) {
+    public List<Wizard> getWizards() {
+		return wizards;
+	}
+
+	public void setWizards(List<Wizard> wizards) {
+		this.wizards = wizards;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 
